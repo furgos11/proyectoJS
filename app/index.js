@@ -1,8 +1,8 @@
 const productos = [
     { nombre: "Menú del día", precio: 300 },
-    { nombre: "Bocatas", precio: 250 },
-    { nombre: "Tartas", precio: 200 },
-    { nombre: "Bebidas", precio: 120 },
+    { nombre: "Bocata", precio: 250 },
+    { nombre: "Tarta", precio: 200 },
+    { nombre: "Bebida", precio: 120 },
 ];
 
 let carrito = [];
@@ -25,10 +25,14 @@ function mostrarProductos() {
 }
 
 function agregarAlCarrito() {
-    mostrarProductos(); 
-    const seleccion = parseInt(
-        prompt("Ingrese el número del producto que desea agregar al carrito:")
-    );
+    let mensaje = "Productos disponibles:\n";
+    productos.forEach((producto, index) => {
+        mensaje += `${index + 1}. ${producto.nombre} - $${producto.precio}\n`;
+    });
+
+    mensaje += "\nIngrese el número del producto que desea agregar al carrito:";
+    const seleccion = parseInt(prompt(mensaje));
+
     if (seleccion >= 1 && seleccion <= productos.length) {
         const productoSeleccionado = productos[seleccion - 1];
         carrito.push(productoSeleccionado);
@@ -78,3 +82,4 @@ while (continuar) {
             alert("Opción inválida!");
     }
 }
+
