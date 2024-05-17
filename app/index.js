@@ -47,14 +47,19 @@ function calcularTotal() {
     carrito.forEach((producto) => {
         total += producto.precio;
     });
-    alert(`Total a pagar: $${total}`);
+
+    let productosEnCarrito = carrito.map(producto => producto.nombre).join(", ");
+    alert(`Total a pagar: $${total}\nProductos en el carrito: ${productosEnCarrito}`);
 }
 
 function finalizarCompra() {
     calcularTotal(); 
+
+    let productosEnCarrito = carrito.map(producto => producto.nombre).join(", ");
     const confirmacion = confirm(
-        `Desea finalizar la compra por un total de $${total}?`
+        `Desea finalizar la compra por un total de $${total}?\nProductos en el carrito: ${productosEnCarrito}`
     );
+
     if (confirmacion) {
         alert("Gracias por su compra!");
         carrito = [];
@@ -64,22 +69,26 @@ function finalizarCompra() {
     }
 }
 
-let continuar = true;
-while (continuar) {
-    const opcion = mostrarOpciones();
-    switch (opcion) {
-        case 1:
-            agregarAlCarrito();
-            break;
-        case 2:
-            calcularTotal();
-            break;
-        case 3:
-            finalizarCompra();
-            continuar = false;
-            break;
-        default:
-            alert("Opción inválida!");
+function menu() {
+    let continuar = true;
+    while (continuar) {
+        const opcion = mostrarOpciones();
+        switch (opcion) {
+            case 1:
+                agregarAlCarrito();
+                break;
+            case 2:
+                calcularTotal();
+                break;
+            case 3:
+                finalizarCompra();
+                continuar = false;
+                break;
+            default:
+                alert("Opción inválida!");
+        }
     }
 }
 
+
+menu();
